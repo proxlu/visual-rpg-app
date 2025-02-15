@@ -8,7 +8,7 @@ Chat em desenvolvimento para jogar RPGs baseados em texto.
 ```
 git clone https://github.com/proxlu/visual-rpg-app.git
 cd visual-rpg-app
-sed -i 's|https://seu-site-padrao.com|https://novo-site-do-usuario.com|' lib/main.dart
+sed -i 's|localhost|https://seu-novo-site|' lib/main.dart
 flutter doctor && flutter build apk
 ```
 2. Seu apk estara em build/app/outputs/flutter-apk/app-release.apk
