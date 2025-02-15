@@ -1,7 +1,8 @@
 # visual-rpg-app
 Chat em desenvolvimento para jogar RPGs baseados em texto.
 
-(https://github.com/user-attachments/assets/1d89f58b-bc34-4e78-a587-3c45e048bb92)798x651_scrot]('WhatsApp\ Image\ 2025-02-15\ at\ 05.32.25.jpeg')
+![WhatsApp Image 2025-02-15 at 05 32 25](https://github.com/user-attachments/assets/9eeca2d2-714c-4024-857a-cb9dbff14be3)
+
 
 ## Instalação e inicialização
 1. Baixe o flutter, abra um terminal e cole os seguintes comandos:
