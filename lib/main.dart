@@ -37,7 +37,8 @@ class _WebViewScreenState extends State<WebViewScreen> {
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
         statusBarColor: Color(0xFF2d2d2d), // Cor da barra de status
-    ));
+      ),
+    );
   }
 
   @override
@@ -49,7 +50,10 @@ class _WebViewScreenState extends State<WebViewScreen> {
           children: [
             // WebView
             InAppWebView(
-              initialUrlRequest: URLRequest(url: WebUri("https://93.189.91.101:8443")),
+              initialUrlRequest: URLRequest(url: WebUri("https://93.189.91.101:8443/")),
+              initialSettings: InAppWebViewSettings(
+                transparentBackground: true, // Torna o fundo transparente
+              ),
               onWebViewCreated: (controller) {
                 webViewController = controller;
               },
@@ -61,15 +65,32 @@ class _WebViewScreenState extends State<WebViewScreen> {
               onReceivedServerTrustAuthRequest: (controller, challenge) async {
                 return ServerTrustAuthResponse(action: ServerTrustAuthResponseAction.PROCEED);
               },
+              onLoadStart: (controller, url) {
+                // Quando o carregamento começar, só atualiza o estado
+                setState(() {});
+              },
+              onLoadStop: (controller, url) {
+                // Quando o carregamento terminar, atualiza o estado
+                setState(() {});
+              },
             ),
-            
-            // Barra de progresso (somente se carregando)
+
+            // Círculo de carregamento ficará atrás da WebView
             if (progress < 1.0)
-              Positioned(
-                top: 0,
-                left: 0,
-                right: 0,
-                child: LinearProgressIndicator(value: progress),
+              Positioned.fill(
+                child: Container(
+                  color: const Color(0xFF2d2d2d), // Cor de fundo do círculo
+                  child: Center(
+                    child: SizedBox(
+                      width: 70,  // Aumenta o tamanho do círculo
+                      height: 70, // Aumenta o tamanho do círculo
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                        strokeWidth: 10.0, // Aumentando o tamanho do círculo
+                      ),
+                    ),
+                  ),
+                ),
               ),
           ],
         ),
